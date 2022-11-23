@@ -38,7 +38,7 @@ class DeviceAnalysisPlugin: FlutterPlugin, MethodCallHandler {
            val width = Resources.getSystem().getDisplayMetrics().widthPixels; 
            val height = Resources.getSystem().getDisplayMetrics().heightPixels; 
            
-           val screenSize = height.toString() + " x " + width.toString()
+           val screenSize = "Width:" + width.toString() + " x Height:" + height.toString()
             result.success(
              screenSize
         )

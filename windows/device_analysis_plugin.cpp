@@ -55,7 +55,7 @@ namespace device_analysis
       const auto stringWidth = std::to_string(nScreenWidth);
       const auto stringHeight = std::to_string(nScreenHeight);
 
-      result->Success(flutter::EncodableValue(stringWidth + "x" + stringHeight));
+      result->Success(flutter::EncodableValue("Width" + stringWidth + "x Height" + stringHeight));
     }
     else
     {
