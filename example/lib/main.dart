@@ -15,6 +15,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _screenSize = 'Unknown';
+  Map<String, String> _deviceParameters = {};
 
   @override
   void initState() {
@@ -25,10 +26,16 @@ class _MyAppState extends State<MyApp> {
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
     String screenSize;
+    Map<String, String> deviceParameters = {
+      'system': 'Windows',
+      'cpu': 'intel21w',
+      'Screen size': '1920 x 1080'
+    };
+
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
-      screenSize = await ScreenSizeAnalisys.getScreenSize();
+      screenSize = await ScreenSizeAnalisis.getScreenSize();
     } catch (e) {
       screenSize = '$e';
     }
@@ -40,6 +47,7 @@ class _MyAppState extends State<MyApp> {
 
     setState(() {
       _screenSize = screenSize;
+      _deviceParameters = deviceParameters;
     });
   }
 
@@ -51,8 +59,26 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Device analysis app'),
         ),
         body: Center(
-          child: Text('Screen size: $_screenSize\n'),
-        ),
+            child: Column(
+          children: [
+            Text('Screen size: $_screenSize\n'),
+            ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: _deviceParameters.length,
+                itemBuilder: (BuildContext context, int index) {
+                  String key = _deviceParameters.keys.elementAt(index);
+                  return Column(
+                    children: [
+                      ListTile(
+                        title: Text(key),
+                        subtitle: Text('${_deviceParameters[key]}'),
+                      )
+                    ],
+                  );
+                })
+          ],
+        )),
       ),
     );
   }

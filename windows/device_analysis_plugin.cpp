@@ -47,6 +47,7 @@ namespace device_analysis
   {
     if (method_call.method_name().compare("getScreenSize") == 0)
     {
+
       ::SetThreadDpiAwarenessContext(DPI_AWARENESS_CONTEXT_SYSTEM_AWARE);
 
       const auto nScreenWidth = GetSystemMetrics(SM_CXSCREEN);

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 
-class ScreenSizeAnalisys {
+class ScreenSizeAnalisis {
   static const MethodChannel _channel =
       MethodChannel('maks.kyrychok/screensize');
 
